@@ -183,7 +183,7 @@ gghistogram_core <- function(data, x, y = "..count..", weight = NULL,
     alpha <- ifelse(.is_empty(grps), 1, alpha)
     .args <- geom_exec(NULL, data = data,
                        color = color2, sides = "b", alpha = alpha)
-    if(rug.outside) {
+    if(rug_outside) {
       .args <- geom_exec(NULL, data = data,
                        color = color2, sides = "b", alpha = alpha, outside = rug_outside)
     }
