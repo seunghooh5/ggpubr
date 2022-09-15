@@ -289,8 +289,8 @@ keep_only_tbl_df_classes <- function(x){
 
 # Change Axis limits
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-.set_axis_limits <- function(xlim = NULL, ylim = NULL){
-  if(!is.null(xlim) | !is.null(ylim)) coord_cartesian(xlim, ylim)
+.set_axis_limits <- function(xlim = NULL, ylim = NULL, ex=FALSE){
+  if(!is.null(xlim) | !is.null(ylim)) coord_cartesian(xlim, ylim, expand=ex)
 }
 
 
