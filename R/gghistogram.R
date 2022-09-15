@@ -79,7 +79,7 @@ gghistogram <- function(data, x, y = "..count..", combine = FALSE, merge = FALSE
                         facet.by = NULL, panel.labs = NULL, short.panel.labs = TRUE,
                         add = c("none", "mean", "median"),
                         add.params = list(linetype = "dashed"),
-                        rug = FALSE, add_density = FALSE,
+                        rug = FALSE, rug_outside = FALSE, add_density = FALSE,
                         label = NULL, font.label = list(size = 11, color = "black"),
                         label.select = NULL, repel = FALSE, label.rectangle = FALSE,
                         position = position_identity(),
@@ -95,7 +95,7 @@ gghistogram <- function(data, x, y = "..count..", combine = FALSE, merge = FALSE
     linetype = linetype, size = size, alpha = alpha, bins = bins, binwidth = binwidth,
     weight = weight, title = title, xlab = xlab, ylab = ylab,
     facet.by = facet.by, panel.labs = panel.labs, short.panel.labs = short.panel.labs,
-    add = add, add.params = add.params, rug = rug, add_density = add_density,
+    add = add, add.params = add.params, rug = rug, rug_outside = rug_outside, add_density = add_density,
     label = label, font.label = font.label, label.select = label.select,
     repel = repel, label.rectangle = label.rectangle,
     position = position, ggtheme = ggtheme, ...)
@@ -133,7 +133,7 @@ gghistogram_core <- function(data, x, y = "..count..", weight = NULL,
                       facet.by = NULL,
                       add = c("none", "mean", "median"),
                       add.params = list(linetype = "dashed"),
-                      rug = FALSE, add_density = FALSE,
+                      rug = FALSE, rug_outside = FALSE, add_density = FALSE,
                       position = position_identity(),
                       ggtheme = theme_classic(),
                       ...)
@@ -183,6 +183,10 @@ gghistogram_core <- function(data, x, y = "..count..", weight = NULL,
     alpha <- ifelse(.is_empty(grps), 1, alpha)
     .args <- geom_exec(NULL, data = data,
                        color = color2, sides = "b", alpha = alpha)
+    if(rug.outside) {
+      .args <- geom_exec(NULL, data = data,
+                       color = color2, sides = "b", alpha = alpha, outside = rug_outside)
+    }
     mapping <- .args$mapping
     mapping[["y"]] <- 0
     option <- .args$option
