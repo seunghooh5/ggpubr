@@ -185,7 +185,7 @@ gghistogram_core <- function(data, x, y = "..count..", weight = NULL,
                        color = color2, sides = "b", alpha = alpha)
     if(rug_outside) {
       .args <- geom_exec(NULL, data = data,
-                       color = color2, sides = "b", alpha = alpha, outside = rug_outside)
+                       color = color2, sides = "t", alpha = alpha, outside = rug_outside)
     }
     mapping <- .args$mapping
     mapping[["y"]] <- 0
